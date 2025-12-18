@@ -29,10 +29,10 @@ export function AdSlot({ slotId, format = "auto", layout }: AdSlotProps) {
     if (!slotId || isDev) {
         return (
             <div className="w-full py-6 flex justify-center">
-                <div className="w-full max-w-[728px] p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 text-center min-h-[120px] flex flex-col items-center justify-center">
+                <div className="w-full max-w-[728px] p-6 bg-muted/50 rounded-2xl border border-dashed border-border text-center min-h-[120px] flex flex-col items-center justify-center">
                     <span className="text-2xl mb-2 grayscale opacity-50">📢</span>
-                    <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Advertisement Space</span>
-                    <span className="text-xs text-slate-400 mt-1">
+                    <span className="text-sm font-medium text-muted-foreground">Advertisement Space</span>
+                    <span className="text-xs text-muted-foreground mt-1">
                         {isDev ? `Dev Mode (Slot: ${slotId || 'None'})` : 'Dynamic Ad Slot'}
                     </span>
                 </div>

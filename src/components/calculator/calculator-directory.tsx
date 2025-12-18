@@ -134,8 +134,8 @@ function DirectoryContent({ calculators }: CalculatorDirectoryProps) {
             <div className="relative max-w-3xl mx-auto -mt-6 mb-12">
                 <div className="relative group">
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-indigo-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="relative bg-white dark:bg-slate-900/80 backdrop-blur-xl border-2 border-slate-100 dark:border-slate-800 rounded-full shadow-lg flex items-center p-2 focus-within:border-primary/50 focus-within:ring-4 focus-within:ring-primary/10 transition-all">
-                        <div className="pl-4 text-slate-400">
+                    <div className="relative bg-card/80 backdrop-blur-xl border-2 border-border rounded-full shadow-lg flex items-center p-2 focus-within:border-primary/50 focus-within:ring-4 focus-within:ring-primary/10 transition-all">
+                        <div className="pl-4 text-muted-foreground">
                             <Search className="w-6 h-6" />
                         </div>
                         <input
@@ -143,10 +143,10 @@ function DirectoryContent({ calculators }: CalculatorDirectoryProps) {
                             placeholder="What do you want to calculate today?"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full bg-transparent border-none px-4 py-3 text-lg placeholder:text-slate-400 focus:outline-none text-slate-800 dark:text-slate-100 font-medium"
+                            className="w-full bg-transparent border-none px-4 py-3 text-lg placeholder:text-muted-foreground focus:outline-none text-foreground font-medium"
                         />
                         {searchQuery && (
-                            <button onClick={() => setSearchQuery('')} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-400 transition-colors">
+                            <button onClick={() => setSearchQuery('')} className="p-2 hover:bg-muted rounded-full text-muted-foreground transition-colors">
                                 <X className="w-5 h-5" />
                             </button>
                         )}
@@ -160,8 +160,8 @@ function DirectoryContent({ calculators }: CalculatorDirectoryProps) {
                         className={cn(
                             "px-4 py-2 rounded-full text-sm font-semibold transition-all border",
                             selectedCategory === "All"
-                                ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-slate-900 dark:border-white shadow-md"
-                                : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700"
+                                ? "bg-primary text-primary-foreground border-primary shadow-md"
+                                : "bg-card text-muted-foreground border-border hover:border-primary hover:text-foreground"
                         )}
                     >
                         All
@@ -173,8 +173,8 @@ function DirectoryContent({ calculators }: CalculatorDirectoryProps) {
                             className={cn(
                                 "px-4 py-2 rounded-full text-sm font-semibold transition-all border",
                                 selectedCategory === cat
-                                    ? "bg-primary text-white border-primary shadow-md shadow-primary/20"
-                                    : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800"
+                                    ? "bg-primary text-primary-foreground border-primary shadow-md"
+                                    : "bg-card text-muted-foreground border-border hover:border-primary hover:text-foreground hover:bg-muted"
                             )}
                         >
                             {cat}
@@ -197,7 +197,7 @@ function DirectoryContent({ calculators }: CalculatorDirectoryProps) {
                             <button
                                 key={cat}
                                 onClick={() => setSelectedCategory(cat)}
-                                className="group relative flex flex-col items-center p-4 rounded-2xl bg-white/50 dark:bg-slate-900/50 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 hover:bg-white dark:hover:bg-slate-900 transition-all duration-300 hover:shadow-lg"
+                                className="group relative flex flex-col items-center p-4 rounded-2xl bg-muted/50 border border-transparent hover:border-border hover:bg-card transition-all duration-300 hover:shadow-lg"
                             >
                                 {/* NEW Badge for Education */}
                                 {cat === 'Education' && (
@@ -210,8 +210,8 @@ function DirectoryContent({ calculators }: CalculatorDirectoryProps) {
                                 <div className={cn("p-3 rounded-xl mb-3 transition-transform duration-300 group-hover:scale-110", style.bg)}>
                                     <Icon className={cn("w-6 h-6", style.color)} />
                                 </div>
-                                <span className="font-semibold text-sm text-slate-700 dark:text-slate-300">{cat}</span>
-                                <span className="text-xs text-slate-400">{count} Apps</span>
+                                <span className="font-semibold text-sm text-foreground">{cat}</span>
+                                <span className="text-xs text-muted-foreground">{count} Apps</span>
                             </button>
                         );
                     })}
@@ -226,7 +226,7 @@ function DirectoryContent({ calculators }: CalculatorDirectoryProps) {
                         <Link
                             key={calc.slug}
                             href={`/${calc.slug}`}
-                            className="group relative bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] p-6 hover:shadow-2xl hover:shadow-indigo-500/10 dark:hover:shadow-indigo-900/10 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col h-full"
+                            className="group relative bg-card text-card-foreground border border-border rounded-[2rem] p-6 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col h-full"
                         >
                             <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-10 transition-opacity">
                                 <Calculator className="w-24 h-24 rotate-12" />
@@ -239,10 +239,10 @@ function DirectoryContent({ calculators }: CalculatorDirectoryProps) {
                                 </span>
                             </div>
 
-                            <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2 group-hover:text-primary transition-colors relative z-10">
+                            <h3 className="text-xl font-bold text-card-foreground mb-2 group-hover:text-primary transition-colors relative z-10">
                                 {calc.meta.title}
                             </h3>
-                            <p className="text-slate-500 dark:text-slate-400 text-sm line-clamp-2 relative z-10 mb-4 flex-1">
+                            <p className="text-muted-foreground text-sm line-clamp-2 relative z-10 mb-4 flex-1">
                                 {calc.meta.description}
                             </p>
 

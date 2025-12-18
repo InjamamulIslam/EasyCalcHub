@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: "EasyCalcHub - Free Finance, Health & Utility Calculators",
@@ -15,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google AdSense Script - Lazy Loaded */}
         <Script
@@ -29,11 +30,18 @@ export default function RootLayout({
       <body
         className={`antialiased flex flex-col min-h-screen font-sans`}
       >
-        <Header />
-        <div className="flex-1">
-          {children}
-        </div>
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <div className="flex-1">
+            {children}
+          </div>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html >
   );

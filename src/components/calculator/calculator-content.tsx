@@ -11,26 +11,26 @@ export function CalculatorContent({ content }: Props) {
     return (
         <div className="space-y-12 mt-12">
             {/* How It Works Section */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-200 dark:border-slate-800">
-                <div className="prose dark:prose-invert max-w-none space-y-4 text-slate-600 dark:text-slate-300">
+            <div className="bg-card text-card-foreground rounded-3xl p-8 shadow-sm border border-border">
+                <div className="prose dark:prose-invert max-w-none space-y-4 text-muted-foreground">
                     <MarkdownViewer text={content.howItWorks} />
                 </div>
             </div>
 
             {/* FAQs Section */}
             {content.faqs && content.faqs.length > 0 && (
-                <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-200 dark:border-slate-800">
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                <div className="bg-card text-card-foreground rounded-3xl p-8 shadow-sm border border-border">
+                    <h2 className="text-2xl font-bold text-card-foreground mb-6 flex items-center gap-2">
                         <span className="text-blue-600 dark:text-blue-400">?</span> Frequently Asked Questions
                     </h2>
                     <div className="space-y-4">
                         {content.faqs.map((faq, index) => (
-                            <details key={index} className="group border-b border-slate-100 dark:border-slate-800 last:border-0 pb-4 last:pb-0">
-                                <summary className="flex items-center justify-between cursor-pointer list-none py-2 text-lg font-medium text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                            <details key={index} className="group border-b border-border last:border-0 pb-4 last:pb-0">
+                                <summary className="flex items-center justify-between cursor-pointer list-none py-2 text-lg font-medium text-foreground hover:text-primary transition-colors">
                                     {faq.question}
-                                    <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
+                                    <ChevronDown className="w-5 h-5 text-muted-foreground group-open:rotate-180 transition-transform" />
                                 </summary>
-                                <div className="mt-2 text-slate-600 dark:text-slate-400 leading-relaxed pl-1">
+                                <div className="mt-2 text-muted-foreground leading-relaxed pl-1">
                                     <p>{faq.answer}</p>
                                 </div>
                             </details>
@@ -59,7 +59,7 @@ function MarkdownViewer({ text }: { text: string }) {
         if (line.startsWith('\\[') && line.endsWith('\\]')) {
             const formula = line.replace('\\[', '').replace('\\]', '').trim();
             output.push(
-                <div key={i} className="my-6 p-4 bg-slate-50 dark:bg-slate-800 border-l-4 border-blue-500 rounded-r-lg font-mono text-center text-lg text-slate-800 dark:text-slate-200 overflow-x-auto">
+                <div key={i} className="my-6 p-4 bg-muted border-l-4 border-blue-500 rounded-r-lg font-mono text-center text-lg text-foreground overflow-x-auto">
                     {parseInline(formula)}
                 </div>
             );
@@ -68,9 +68,9 @@ function MarkdownViewer({ text }: { text: string }) {
 
         // Headers
         if (line.startsWith('### ')) {
-            output.push(<h3 key={i} className="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">{parseInline(line.replace('### ', ''))}</h3>);
+            output.push(<h3 key={i} className="text-xl font-bold text-foreground mt-6 mb-3">{parseInline(line.replace('### ', ''))}</h3>);
         } else if (line.startsWith('## ')) {
-            output.push(<h2 key={i} className="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4 border-b border-slate-100 dark:border-slate-800 pb-2">{parseInline(line.replace('## ', ''))}</h2>);
+            output.push(<h2 key={i} className="text-2xl font-bold text-foreground mt-8 mb-4 border-b border-border pb-2">{parseInline(line.replace('## ', ''))}</h2>);
         } else if (line.startsWith('- ')) {
             // List Items - could group them but simple rendering is okay for now
             output.push(
@@ -81,7 +81,7 @@ function MarkdownViewer({ text }: { text: string }) {
             );
         } else {
             // Paragraph
-            output.push(<p key={i} className="mb-4 leading-7 text-slate-600 dark:text-slate-300">{parseInline(line)}</p>);
+            output.push(<p key={i} className="mb-4 leading-7 text-muted-foreground">{parseInline(line)}</p>);
         }
     }
 
@@ -96,10 +96,10 @@ function parseInline(text: string) {
 
     return parts.map((part, index) => {
         if (part.startsWith('**') && part.endsWith('**')) {
-            return <strong key={index} className="font-semibold text-slate-900 dark:text-white">{part.slice(2, -2)}</strong>;
+            return <strong key={index} className="font-semibold text-foreground">{part.slice(2, -2)}</strong>;
         }
         if (part.startsWith('`') && part.endsWith('`')) {
-            return <code key={index} className="bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-sm font-mono text-pink-600 dark:text-pink-400">{part.slice(1, -1)}</code>;
+            return <code key={index} className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono text-pink-600 dark:text-pink-400">{part.slice(1, -1)}</code>;
         }
         return part;
     });

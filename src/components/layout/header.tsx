@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Calculator, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ export function Header() {
     ];
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-white/80 dark:bg-black/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/60">
+        <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
             <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2 font-bold text-xl text-primary z-50">
                     <Calculator className="h-6 w-6" />
@@ -44,14 +45,18 @@ export function Header() {
                     ))}
                 </nav>
 
-                {/* Mobile Menu Toggle */}
-                <button
-                    className="xl:hidden p-2 text-foreground z-50"
-                    onClick={toggleMenu}
-                    aria-label="Toggle Menu"
-                >
-                    {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                </button>
+                <div className="flex items-center gap-4">
+                    <ModeToggle />
+
+                    {/* Mobile Menu Toggle */}
+                    <button
+                        className="xl:hidden p-2 text-foreground z-50"
+                        onClick={toggleMenu}
+                        aria-label="Toggle Menu"
+                    >
+                        {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                    </button>
+                </div>
 
                 {/* Mobile Nav Overlay */}
                 {isMenuOpen && (

@@ -43,7 +43,7 @@ export function InputGroup({ input, value, onChange, className }: InputGroupProp
             {/* Label Row */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                    <label htmlFor={input.id} className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <label htmlFor={input.id} className="text-sm font-semibold text-foreground/80">
                         {input.label}
                     </label>
                     {input.helpText && (
@@ -143,7 +143,7 @@ export function InputGroup({ input, value, onChange, className }: InputGroupProp
                         onChange={handleInputChange}
                         min={input.min}
                         max={input.max}
-                        className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-3 text-base font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full rounded-xl border border-input bg-card px-4 py-3 text-base font-semibold text-card-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
                     />
                     {input.addonRight && (
                         <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-slate-400 pointer-events-none">

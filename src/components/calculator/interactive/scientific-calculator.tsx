@@ -189,39 +189,39 @@ export function ScientificCalculator() {
 
     // --- UI Classes ---
     const btnBase = "relative h-12 md:h-14 rounded-xl font-medium text-sm md:text-base shadow-[0px_2px_0px_0px_rgba(0,0,0,0.1)] active:shadow-none active:translate-y-[2px] transition-all flex items-center justify-center select-none active:bg-opacity-80";
-    const btnFunc = cn(btnBase, "bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700");
-    const btnNum = cn(btnBase, "bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-lg font-semibold hover:bg-slate-50 dark:hover:bg-slate-600");
-    const btnOp = cn(btnBase, "bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-lg hover:bg-blue-200 dark:hover:bg-blue-900/60");
-    const btnDanger = cn(btnBase, "bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300 hover:bg-rose-200");
-    const btnSuccess = cn(btnBase, "bg-emerald-500 text-white shadow-emerald-700 hover:bg-emerald-600 active:shadow-none");
+    const btnFunc = cn(btnBase, "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground");
+    const btnNum = cn(btnBase, "bg-card text-card-foreground text-lg font-semibold hover:bg-muted/50");
+    const btnOp = cn(btnBase, "bg-primary/10 text-primary text-lg hover:bg-primary/20");
+    const btnDanger = cn(btnBase, "bg-destructive/10 text-destructive hover:bg-destructive/20");
+    const btnSuccess = cn(btnBase, "bg-primary text-primary-foreground shadow-primary/25 hover:bg-primary/90 active:shadow-none");
 
     return (
         <div className="w-full max-w-4xl mx-auto p-1 space-y-8">
-            <div className="bg-slate-100 dark:bg-slate-950 p-4 md:p-6 rounded-[2rem] shadow-2xl border border-slate-300 dark:border-slate-800 relative overflow-hidden">
+            <div className="bg-muted/30 p-4 md:p-6 rounded-[2rem] shadow-2xl border border-border relative overflow-hidden">
                 {/* Background decorative gloss */}
-                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-50"></div>
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-foreground/5 to-transparent opacity-50"></div>
 
                 {/* --- Screen --- */}
                 <div
                     ref={displayRef}
-                    className="relative bg-[#f0f4f8] dark:bg-[#1a1b1e] w-full h-32 md:h-40 mb-6 rounded-2xl border-4 border-slate-200 dark:border-slate-800 shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] p-4 md:p-6 text-right flex flex-col justify-between overflow-hidden"
+                    className="relative bg-card w-full h-32 md:h-40 mb-6 rounded-2xl border-4 border-muted shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] p-4 md:p-6 text-right flex flex-col justify-between overflow-hidden"
                 >
                     {/* Status Bar */}
-                    <div className="flex justify-between text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest pl-1">
+                    <div className="flex justify-between text-[10px] md:text-xs font-bold text-muted-foreground uppercase tracking-widest pl-1">
                         <div className="flex gap-4">
-                            <span className={isDegrees ? "text-slate-900 dark:text-white" : "text-slate-300 dark:text-slate-700"}>DEG</span>
-                            <span className={!isDegrees ? "text-slate-900 dark:text-white" : "text-slate-300 dark:text-slate-700"}>RAD</span>
+                            <span className={isDegrees ? "text-foreground" : "text-muted-foreground/50"}>DEG</span>
+                            <span className={!isDegrees ? "text-foreground" : "text-muted-foreground/50"}>RAD</span>
                         </div>
-                        {showMemoryIndicator && <span className="text-blue-600 dark:text-blue-400 font-extrabold flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400"></span> MEMORY
+                        {showMemoryIndicator && <span className="text-primary font-extrabold flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary"></span> MEMORY
                         </span>}
                     </div>
 
                     {/* Main Display */}
                     <div className="flex-1 flex items-center justify-end overflow-hidden">
                         <span className={cn(
-                            "font-mono text-3xl md:text-5xl tracking-wide text-slate-800 dark:text-slate-100 break-all",
-                            error && "text-rose-500"
+                            "font-mono text-3xl md:text-5xl tracking-wide text-foreground break-all",
+                            error && "text-destructive"
                         )}>
                             {error || display}
                         </span>
@@ -231,12 +231,12 @@ export function ScientificCalculator() {
                 {/* --- Controls Bar --- */}
                 <div className="flex flex-col md:flex-row justify-between items-center mb-4 px-1 gap-2">
                     {/* RAD/DEG Selection */}
-                    <div className="flex bg-slate-200 dark:bg-slate-800 p-1 rounded-xl">
+                    <div className="flex bg-muted p-1 rounded-xl">
                         <button
                             onClick={() => setIsDegrees(false)}
                             className={cn(
                                 "px-4 py-1.5 rounded-lg text-xs font-bold transition-all",
-                                !isDegrees ? "bg-white dark:bg-slate-600 text-slate-900 dark:text-white shadow-sm" : "text-slate-500 dark:text-slate-400 hover:text-slate-700"
+                                !isDegrees ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
                             )}
                         >
                             Rad
@@ -245,7 +245,7 @@ export function ScientificCalculator() {
                             onClick={() => setIsDegrees(true)}
                             className={cn(
                                 "px-4 py-1.5 rounded-lg text-xs font-bold transition-all",
-                                isDegrees ? "bg-white dark:bg-slate-600 text-slate-900 dark:text-white shadow-sm" : "text-slate-500 dark:text-slate-400 hover:text-slate-700"
+                                isDegrees ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
                             )}
                         >
                             Deg
@@ -260,7 +260,7 @@ export function ScientificCalculator() {
                                 onClick={() => handleMemory(m as any)}
                                 className={cn(
                                     "px-2 md:px-3 py-1.5 rounded-lg text-[10px] md:text-xs font-bold transition-colors border border-transparent",
-                                    m === 'MS' || m === 'MC' ? "text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-900/20 hover:bg-rose-100" : "text-slate-600 dark:text-slate-400 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300"
+                                    m === 'MS' || m === 'MC' ? "text-destructive bg-destructive/10 hover:bg-destructive/20" : "text-muted-foreground bg-muted hover:bg-muted/80 hover:text-foreground"
                                 )}
                             >
                                 {m}

@@ -14,64 +14,68 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
 }
 
 :root {
-  /* Cleaner, brighter white for light mode */
-  --background: #ffffff;
-  --foreground: #0f172a;
+  /* Premium Light Mode - Max Readability */
+  --background: #f8fafc;
+  /* Slate 50 - Off-white soft background */
+  --foreground: #020617;
+  /* Slate 950 - Hard black for text */
+  --card: #ffffff;
+  --card-foreground: #020617;
 
-  /* Premium Indigo-Violet Brand Color */
+  /* Vivid Violet for Clarity */
   --primary: #4f46e5;
   --primary-foreground: #ffffff;
 
-  --secondary: #f8fafc;
+  --secondary: #f1f5f9;
+  /* Slate 100 */
   --secondary-foreground: #0f172a;
 
   --muted: #f1f5f9;
-  --muted-foreground: #64748b;
+  --muted-foreground: #475569;
+  /* Slate 600 - Dark grey for subtext to prevent washout */
 
   --accent: #eef2ff;
   --accent-foreground: #4f46e5;
 
-  --border: #e2e8f0;
-  --input: #e2e8f0;
+  --border: #cbd5e1;
+  /* Slate 300 - Visible borders for structure */
+  --input: #cbd5e1;
   --ring: #4f46e5;
 
   --radius: 1rem;
-  /* More rounded corners */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Deeper, richer dark mode */
-    --background: #09090b;
-    /* Zinc 950 */
-    --foreground: #fafafa;
+.dark {
+  /* Premium Dark Mode - True Depth */
+  --background: #020617;
+  /* Slate 950 - Deepest void */
+  --foreground: #ffffff;
+  /* Pure white text */
+  --card: #0f172a;
+  /* Slate 900 - Distinct panel */
+  --card-foreground: #f8fafc;
 
-    --primary: #6366f1;
-    /* Indigo 500 */
-    --primary-foreground: #ffffff;
+  --primary: #818cf8;
+  --primary-foreground: #ffffff;
 
-    --secondary: #18181b;
-    /* Zinc 900 */
-    --secondary-foreground: #fafafa;
+  --secondary: #1e293b;
+  --secondary-foreground: #f8fafc;
 
-    --muted: #18181b;
-    --muted-foreground: #a1a1aa;
+  --muted: #020617;
+  --muted-foreground: #94a3b8;
+  /* Slate 400 - Readable subtext */
 
-    --accent: #1e1b4b;
-    --accent-foreground: #818cf8;
+  --accent: #1e1b4b;
+  --accent-foreground: #c7d2fe;
 
-    --border: #27272a;
-    --input: #27272a;
-    --ring: #6366f1;
-  }
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #818cf8;
 }
 
 body {

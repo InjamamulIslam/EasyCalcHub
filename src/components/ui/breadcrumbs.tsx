@@ -13,7 +13,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
             </Link>
             {items.map((item, index) => (
                 <div key={index} className="flex items-center space-x-2">
-                    <ChevronRight className="w-4 h-4 text-slate-300" />
+                    <ChevronRight className="w-4 h-4 text-muted-foreground/50" />
                     {item.href ? (
                         <Link href={item.href} className="hover:text-primary transition-colors font-medium">
                             {item.label}

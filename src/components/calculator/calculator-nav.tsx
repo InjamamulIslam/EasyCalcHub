@@ -27,8 +27,8 @@ export function CalculatorNav({ slug }: CalculatorNavProps) {
                     className={cn(
                         "px-4 py-2 rounded-lg text-sm font-medium transition-all",
                         tab.active
-                            ? "bg-white text-primary shadow-sm"
-                            : "text-muted-foreground hover:text-foreground hover:bg-white/50"
+                            ? "bg-card text-primary shadow-sm"
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted"
                     )}
                 >
                     {tab.label}

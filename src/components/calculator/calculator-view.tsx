@@ -51,14 +51,33 @@ export function CalculatorView({ slug }: CalculatorViewProps) {
 
     const saveToHistory = () => {
         const mainRes = results.find(r => r.isHighlight);
-        const resultLabel = mainRes ? `${mainRes.label}: ${mainRes.value}` : 'Calculation';
+        const allResults = results.map(r => `${r.label}: ${formatResultValue(r.value, r.type)}`).join(' | ');
+
+        // Format inputs for display
+        const inputDetails = config.inputs
+            .map(inp => {
+                const val = inputs[inp.id];
+                const formatted = inp.addonRight ? `${Number(val).toLocaleString('en-IN')} ${inp.addonRight}` : val;
+                return `${inp.label}: ${formatted}`;
+            })
+            .join(', ');
+
+        const resultSummary = mainRes
+            ? `${formatResultValue(mainRes.value, mainRes.type)}`
+            : allResults;
 
         addToHistory({
             type: 'config',
             title: config.meta.title,
-            result: resultLabel,
+            result: `${resultSummary} · ${inputDetails}`,
             inputs: { ...inputs }
-        } as any); // Type assertion if needed, or adjust HistoryItem type
+        } as any);
+    };
+
+    const formatResultValue = (value: any, type?: string) => {
+        if (type === 'currency') return `₹${Number(value).toLocaleString('en-IN')}`;
+        if (type === 'percentage') return `${value}%`;
+        return String(value);
     };
 
     const restoreFromHistory = (item: any) => {
@@ -103,13 +122,13 @@ export function CalculatorView({ slug }: CalculatorViewProps) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                 {/* Inputs Section */}
                 <div className="lg:col-span-5 space-y-6">
-                    <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 lg:p-8 shadow-lg border border-slate-200 dark:border-slate-800">
+                    <div className="bg-card text-card-foreground rounded-3xl p-6 lg:p-8 shadow-lg border border-border">
                         {/* Header */}
                         <div className="mb-8">
-                            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+                            <h2 className="text-2xl font-bold text-card-foreground mb-1">
                                 Input Values
                             </h2>
-                            <p className="text-sm text-slate-500">Adjust parameters below</p>
+                            <p className="text-sm text-muted-foreground">Adjust parameters below</p>
                         </div>
 
                         {/* Inputs */}
@@ -136,7 +155,7 @@ export function CalculatorView({ slug }: CalculatorViewProps) {
                         </div>
 
                         {/* Quick Actions */}
-                        <div className="pt-6 mt-6 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 gap-4">
+                        <div className="pt-6 mt-6 border-t border-border grid grid-cols-2 gap-4">
                             <button
                                 onClick={() => {
                                     const initial: Record<string, number | string> = {};
@@ -145,13 +164,13 @@ export function CalculatorView({ slug }: CalculatorViewProps) {
                                     });
                                     setInputs(initial);
                                 }}
-                                className="px-4 py-2.5 text-sm font-semibold rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                                className="px-4 py-2.5 text-sm font-semibold rounded-xl bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground transition-colors"
                             >
                                 Reset
                             </button>
                             <button
                                 onClick={saveToHistory}
-                                className="px-4 py-2.5 text-sm font-semibold rounded-xl bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                                className="px-4 py-2.5 text-sm font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
                             >
                                 Save Result
                             </button>
@@ -182,26 +201,26 @@ export function CalculatorView({ slug }: CalculatorViewProps) {
 
             {/* Ad Slot 1 - Below Calculator (Horizontal Banner) */}
             <div className="w-full">
-                <div className="max-w-[728px] mx-auto p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 text-center min-h-[120px] flex flex-col items-center justify-center">
+                <div className="max-w-[728px] mx-auto p-6 bg-muted/50 rounded-2xl border border-dashed border-border text-center min-h-[120px] flex flex-col items-center justify-center">
                     <div className="text-2xl mb-2">📢</div>
-                    <span className="text-sm font-medium text-slate-600 dark:text-slate-400">Advertisement</span>
-                    <span className="text-xs text-slate-400 mt-1">728 x 90 - Leaderboard</span>
+                    <span className="text-sm font-medium text-muted-foreground">Advertisement</span>
+                    <span className="text-xs text-muted-foreground mt-1">728 x 90 - Leaderboard</span>
                 </div>
             </div>
 
             {/* Content Section - Related Calculators or Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-md border border-slate-200 dark:border-slate-800">
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Related Tools</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Explore more financial calculators</p>
+                <div className="bg-card text-card-foreground rounded-2xl p-6 shadow-md border border-border">
+                    <h3 className="text-lg font-bold text-card-foreground mb-2">Related Tools</h3>
+                    <p className="text-sm text-muted-foreground">Explore more financial calculators</p>
                 </div>
-                <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-md border border-slate-200 dark:border-slate-800">
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Quick Tips</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Learn how to use this calculator</p>
+                <div className="bg-card text-card-foreground rounded-2xl p-6 shadow-md border border-border">
+                    <h3 className="text-lg font-bold text-card-foreground mb-2">Quick Tips</h3>
+                    <p className="text-sm text-muted-foreground">Learn how to use this calculator</p>
                 </div>
-                <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-md border border-slate-200 dark:border-slate-800">
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Save Results</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Share or download your calculation</p>
+                <div className="bg-card text-card-foreground rounded-2xl p-6 shadow-md border border-border">
+                    <h3 className="text-lg font-bold text-card-foreground mb-2">Save Results</h3>
+                    <p className="text-sm text-muted-foreground">Share or download your calculation</p>
                 </div>
             </div>
 

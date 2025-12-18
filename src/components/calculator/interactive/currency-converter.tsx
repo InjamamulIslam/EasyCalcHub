@@ -142,35 +142,35 @@ export function CurrencyConverter() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
 
                 {/* Converter Card */}
-                <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 lg:p-8 shadow-lg border border-slate-200 dark:border-slate-800">
+                <div className="bg-card text-card-foreground rounded-3xl p-6 lg:p-8 shadow-lg border border-border">
                     <div className="flex items-center justify-between mb-8">
                         <div>
-                            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Currency Converter</h2>
-                            <p className="text-sm text-slate-500">Real-time Fiat & Crypto Rates</p>
+                            <h2 className="text-2xl font-bold text-foreground">Currency Converter</h2>
+                            <p className="text-sm text-muted-foreground">Real-time Fiat & Crypto Rates</p>
                         </div>
-                        {loading && <RefreshCw className="w-5 h-5 text-blue-600 animate-spin" />}
+                        {loading && <RefreshCw className="w-5 h-5 text-primary animate-spin" />}
                     </div>
 
                     <div className="space-y-6">
                         {/* Amount */}
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Amount</label>
+                            <label className="block text-sm font-medium text-muted-foreground mb-2">Amount</label>
                             <input
                                 type="number"
                                 value={amount}
                                 onChange={(e) => setAmount(Number(e.target.value))}
-                                className="w-full text-3xl font-bold p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-500 transition-all font-mono"
+                                className="w-full text-3xl font-bold p-4 rounded-2xl bg-muted border border-border outline-none focus:ring-2 focus:ring-primary transition-all font-mono text-foreground"
                             />
                         </div>
 
                         <div className="grid grid-cols-[1fr,auto,1fr] gap-4 items-center">
                             {/* From */}
                             <div className="relative group">
-                                <label className="block text-xs font-medium text-slate-500 mb-1.5 ml-1">From</label>
+                                <label className="block text-xs font-medium text-muted-foreground mb-1.5 ml-1">From</label>
                                 <select
                                     value={from}
                                     onChange={(e) => setFrom(e.target.value)}
-                                    className="w-full appearance-none p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-500 shadow-sm cursor-pointer font-semibold text-slate-900 dark:text-white"
+                                    className="w-full appearance-none p-4 rounded-2xl bg-card border border-border outline-none focus:ring-2 focus:ring-primary shadow-sm cursor-pointer font-semibold text-foreground"
                                 >
                                     <optgroup label="Fiat Currencies">
                                         {FIAT_CURRENCIES.map(c => <option key={c.code} value={c.code}>{c.flag} {c.code}</option>)}
@@ -184,18 +184,18 @@ export function CurrencyConverter() {
                             {/* Swap Button */}
                             <button
                                 onClick={handleSwap}
-                                className="mt-6 p-3 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700"
+                                className="mt-6 p-3 rounded-full bg-muted hover:bg-muted/80 transition-colors border border-border"
                             >
-                                <ArrowRightLeft className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                                <ArrowRightLeft className="w-5 h-5 text-muted-foreground" />
                             </button>
 
                             {/* To */}
                             <div className="relative group">
-                                <label className="block text-xs font-medium text-slate-500 mb-1.5 ml-1">To</label>
+                                <label className="block text-xs font-medium text-muted-foreground mb-1.5 ml-1">To</label>
                                 <select
                                     value={to}
                                     onChange={(e) => setTo(e.target.value)}
-                                    className="w-full appearance-none p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-500 shadow-sm cursor-pointer font-semibold text-slate-900 dark:text-white"
+                                    className="w-full appearance-none p-4 rounded-2xl bg-card border border-border outline-none focus:ring-2 focus:ring-primary shadow-sm cursor-pointer font-semibold text-foreground"
                                 >
                                     <optgroup label="Fiat Currencies">
                                         {FIAT_CURRENCIES.map(c => <option key={c.code} value={c.code}>{c.flag} {c.code}</option>)}
@@ -234,13 +234,13 @@ export function CurrencyConverter() {
                         </div>
 
                         {lastUpdated && (
-                            <p className="text-center text-xs text-slate-400">
+                            <p className="text-center text-xs text-muted-foreground">
                                 Last updated: {lastUpdated.toLocaleTimeString()}
                             </p>
                         )}
 
                         {error && (
-                            <p className="text-center text-sm text-red-500 bg-red-50 dark:bg-red-900/10 p-2 rounded-lg border border-red-100 dark:border-red-900/20">
+                            <p className="text-center text-sm text-destructive bg-destructive/10 p-2 rounded-lg border border-destructive/20">
                                 {error}
                             </p>
                         )}
@@ -259,24 +259,24 @@ export function CurrencyConverter() {
                     )}
 
                     {/* Info Card */}
-                    <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-md border border-slate-200 dark:border-slate-800">
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                    <div className="bg-card text-card-foreground rounded-2xl p-6 shadow-md border border-border">
+                        <h3 className="text-lg font-bold text-card-foreground mb-4 flex items-center gap-2">
                             <span>{fromCurrency?.flag}</span> {fromCurrency?.name}
-                            <span className="text-slate-400">to</span>
+                            <span className="text-muted-foreground">to</span>
                             <span>{toCurrency?.flag}</span> {toCurrency?.name}
                         </h3>
                         <div className="space-y-3">
-                            <div className="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800">
-                                <span className="text-slate-500 text-sm">Base Currency</span>
+                            <div className="flex justify-between py-2 border-b border-border">
+                                <span className="text-muted-foreground text-sm">Base Currency</span>
                                 <span className="font-medium">{fromCurrency?.name} ({from})</span>
                             </div>
-                            <div className="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800">
-                                <span className="text-slate-500 text-sm">Target Currency</span>
+                            <div className="flex justify-between py-2 border-b border-border">
+                                <span className="text-muted-foreground text-sm">Target Currency</span>
                                 <span className="font-medium">{toCurrency?.name} ({to})</span>
                             </div>
                             <div className="flex justify-between py-2">
-                                <span className="text-slate-500 text-sm">Current Rate</span>
-                                <span className="font-medium font-mono text-blue-600 dark:text-blue-400">
+                                <span className="text-muted-foreground text-sm">Current Rate</span>
+                                <span className="font-medium font-mono text-primary">
                                     {rate ? `1 ${from} = ${rate.toFixed(4)} ${to}` : 'Loading...'}
                                 </span>
                             </div>
@@ -284,13 +284,13 @@ export function CurrencyConverter() {
                     </div>
 
                     {/* Quick Conversions */}
-                    <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-md border border-slate-200 dark:border-slate-800">
-                        <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-wider">Quick Conversions</h3>
+                    <div className="bg-card text-card-foreground rounded-2xl p-6 shadow-md border border-border">
+                        <h3 className="text-sm font-bold text-foreground mb-4 uppercase tracking-wider">Quick Conversions</h3>
                         <div className="grid grid-cols-2 gap-3 text-sm">
                             {[1, 5, 10, 25, 50, 100].map(val => (
-                                <div key={val} className="flex justify-between p-2 rounded-lg bg-slate-50 dark:bg-slate-800/50">
-                                    <span className="font-medium text-slate-600 dark:text-slate-400">{val} {from}</span>
-                                    <span className="font-bold text-slate-900 dark:text-white">
+                                <div key={val} className="flex justify-between p-2 rounded-lg bg-muted/50">
+                                    <span className="font-medium text-muted-foreground">{val} {from}</span>
+                                    <span className="font-bold text-foreground">
                                         {rate ? (val * rate).toFixed(2) : '-'} {to}
                                     </span>
                                 </div>

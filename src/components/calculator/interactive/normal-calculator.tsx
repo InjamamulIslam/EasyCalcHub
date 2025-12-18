@@ -77,18 +77,18 @@ export function NormalCalculator() {
     };
 
     const btnClass = "h-16 rounded-2xl font-bold text-xl transition-all active:scale-95 flex items-center justify-center shadow-sm";
-    const numClass = `${btnClass} bg-white dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700`;
-    const opClass = `${btnClass} bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50`;
-    const actionClass = `${btnClass} bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600`;
-    const eqClass = `${btnClass} bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/25`;
+    const numClass = `${btnClass} bg-card text-card-foreground hover:bg-muted/50`;
+    const opClass = `${btnClass} bg-primary/10 text-primary hover:bg-primary/20`;
+    const actionClass = `${btnClass} bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground`;
+    const eqClass = `${btnClass} bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25`;
 
     return (
         <div className="max-w-sm mx-auto space-y-6">
-            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-slate-800">
+            <div className="bg-muted/30 p-6 rounded-[2.5rem] shadow-2xl border border-border">
                 {/* Display */}
-                <div className="bg-white dark:bg-black rounded-3xl p-6 mb-6 text-right shadow-inner border border-slate-100 dark:border-slate-800 h-28 flex flex-col justify-end">
-                    <div className="text-slate-400 text-sm h-6 font-medium tracking-wider">{equation}</div>
-                    <div className="text-4xl font-bold text-slate-900 dark:text-white tracking-tight overflow-hidden text-ellipsis">{display}</div>
+                <div className="bg-card rounded-3xl p-6 mb-6 text-right shadow-inner border border-input h-28 flex flex-col justify-end">
+                    <div className="text-muted-foreground text-sm h-6 font-medium tracking-wider">{equation}</div>
+                    <div className="text-4xl font-bold text-card-foreground tracking-tight overflow-hidden text-ellipsis">{display}</div>
                 </div>
 
                 {/* Keypad */}
